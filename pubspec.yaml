@@ -2,9 +2,7 @@ name: date_util
 description: A simple dart API with a complete set of date helper methods
              not available in the DateTime API hence, production is
              made easier when working with dates.
-version: 0.1.4
-homepage: https://github.com/corpsgeek/Date-Utility
-author: Adetu Ridwan, Egbesola Anthony <bethetechnology@gmail.com>
+version: 1.0.0
 
 environment:
   sdk: '>=2.12.0 <3.0.0'

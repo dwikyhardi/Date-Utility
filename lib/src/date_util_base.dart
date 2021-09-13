@@ -1,11 +1,12 @@
 // Copyright (c) 2018, Adetu Ridwan and Egbesola Anthony.
-import 'dart:io';
 import 'dart:core';
+import 'dart:io';
 
 /// A date utility interface to get every information of dates, months, weeks and year taking leap
 /// year into consideration.
 class DateUtil {
   var dayOfWeek = 0;
+
   int yearLength(int year) {
     var yearLength = 0;
     for (int counter = 1; counter < year; counter++) {
@@ -71,23 +72,20 @@ class DateUtil {
   }
 
   int? daysInMonth(final int monthNum, final int year) {
-    List<int?> monthLength = [];
-    monthLength[0] = 31;
-    monthLength[2] = 31;
-    monthLength[4] = 31;
-    monthLength[6] = 31;
-    monthLength[7] = 31;
-    monthLength[9] = 31;
-    monthLength[11] = 31;
-    monthLength[3] = 30;
-    monthLength[8] = 30;
-    monthLength[5] = 30;
-    monthLength[10] = 30;
-
-    if (leapYear(year) == true)
-      monthLength[1] = 29;
-    else
-      monthLength[1] = 28;
+    List<int?> monthLength = List.generate(DateTime.monthsPerYear, (index) {
+      if (index == 1) {
+        if (leapYear(year) == true){
+          return 29;
+        }
+        else{
+          return 28;
+        }
+      } else if(index == 3 || index == 5 || index == 8 || index == 10){
+        return 30;
+      }else{
+        return 31;
+      }
+    });
 
     return monthLength[monthNum - 1];
   }
